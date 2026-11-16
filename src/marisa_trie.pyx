@@ -1,7 +1,7 @@
 # cython: profile=False, embedsignature=True
 
 from std_iostream cimport stringstream, istream, ostream
-from libc.string cimport strncmp
+from libc.string cimport memcmp
 cimport keyset
 cimport key
 cimport agent
@@ -176,7 +176,7 @@ cdef class _Trie:
             key1 = ag1.key()
             key2 = ag2.key()
             if (key1.length() != key2.length() or
-                strncmp(key1.ptr(), key2.ptr(), key1.length()) != 0):
+                memcmp(key1.ptr(), key2.ptr(), key1.length()) != 0):
                 return False
         return True
 
